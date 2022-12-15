@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const _ = require("lodash");
 // const { ATLAS } = require("./config"); // Uncomment this line if you are using a local config file
+const ATLAS = process.env.ATLAS;
 
 mongoose.set("strictQuery", true);
 
@@ -10,7 +11,7 @@ const app = express();
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
-mongoose.connect(ATLAS || process.env.ATLAS);
+mongoose.connect(ATLAS);
 
 const itemsSchema = new mongoose.Schema({
   name: {
