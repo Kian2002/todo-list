@@ -5,7 +5,7 @@ const _ = require("lodash");
 // const { ATLAS } = require("./config"); // Uncomment this line if you are using a local config file
 const ATLAS = process.env.ATLAS;
 
-mongoose.set("strictQuery", true);
+mongoose.set("strictQuery", true); 
 
 const app = express();
 app.set("view engine", "ejs");
