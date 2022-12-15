@@ -2,7 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const _ = require("lodash");
-const { ATLAS } = require("./config");
+// const { ATLAS } = require("./config"); // Uncomment this line if you are using a local config file
 
 mongoose.set("strictQuery", true);
 
