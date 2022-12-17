@@ -2,10 +2,10 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const _ = require("lodash");
-// const { ATLAS } = require("./config"); // Uncomment this line if you are using a local config file
-const ATLAS = process.env.ATLAS;
+const { ATLAS } = require("./config"); // Uncomment this line if you are using a local config file
+//const ATLAS = process.env.ATLAS;
 
-mongoose.set("strictQuery", true); 
+mongoose.set("strictQuery", true);
 
 const app = express();
 app.set("view engine", "ejs");
@@ -16,7 +16,6 @@ mongoose.connect(ATLAS);
 const itemsSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: [true, "Name not entered!"],
   },
 });
 
@@ -54,7 +53,7 @@ app.get("/", (req, res) => {
 
 app.get("/list/:customListName", (req, res) => {
   const customListName = _.capitalize(req.params.customListName);
-  
+
   List.findOne({ name: customListName }, (err, result) => {
     if (err) {
       console.log(err);
@@ -116,7 +115,7 @@ app.post("/delete", (req, res) => {
     List.findOneAndUpdate(
       { name: listName },
       { $pull: { items: { _id: id } } },
-      (err, result) => {
+      (err) => {
         if (err) {
           console.log(err);
         } else {
